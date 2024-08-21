@@ -5,6 +5,7 @@ import com.study.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -22,7 +23,14 @@ public class BoardController {
     @PostMapping("/board/writepro")
     public String boardWritePro(@ModelAttribute Board board) {
         boardService.write(board);
-        System.out.println("컨트롤러 완료");
         return "";
     }
+
+    @GetMapping("board/list")
+    public String boardList(Model model){
+        model.addAttribute("list",boardService.boardList()); //실행시 반환된 boardList를 list라는 이름으로 받아서 넘김
+
+        return "boardlist";
+    }
+
 }

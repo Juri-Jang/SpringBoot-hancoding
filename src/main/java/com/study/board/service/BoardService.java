@@ -5,7 +5,8 @@ import com.study.board.repository.BoardRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
+import java.util.List;
 
 @Service
 public class BoardService {
@@ -15,7 +16,10 @@ public class BoardService {
     @Transactional
     public void write(Board board){
         boardRepository.save(board);
-        System.out.println("서비스 완료");
+    }
 
+    public List<Board> boardList() {
+
+       return boardRepository.findAll();
     }
 }
