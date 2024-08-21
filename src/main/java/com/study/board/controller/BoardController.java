@@ -17,7 +17,7 @@ public class BoardController {
     public String boardWriteForm(){
 
 
-        return "boardwrite";
+        return "boardwrite"; //해당 html 파일명
     }
 
     @PostMapping("/board/writepro")
@@ -26,11 +26,16 @@ public class BoardController {
         return "";
     }
 
-    @GetMapping("board/list")
+    @GetMapping("/board/list")
     public String boardList(Model model){
         model.addAttribute("list",boardService.boardList()); //실행시 반환된 boardList를 list라는 이름으로 받아서 넘김
 
         return "boardlist";
     }
 
+    @GetMapping("/board/view") //localhost:8080/board/view?id=1
+    public String boardView(Model model, Integer id){
+        model.addAttribute("board",boardService.boardView(id));
+        return "boardview";
+    }
 }
