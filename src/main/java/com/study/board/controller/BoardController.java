@@ -15,8 +15,6 @@ public class BoardController {
 
     @GetMapping("/board/write") //localhost:8080/board/write
     public String boardWriteForm(){
-
-
         return "boardwrite"; //해당 html 파일명
     }
 
@@ -44,4 +42,20 @@ public class BoardController {
         boardService.boardDelete(id);
         return "redirect:/board/list";
     }
+
+    @GetMapping("/board/modify/{id}")
+    public String boardModify(@PathVariable("id") Integer id, Model model){
+        model.addAttribute("board", boardService.boardView(id));
+        return "boardmodify";
+    }
+
+    @PostMapping("/board/update/{id}")
+    public String boardUpdate(@PathVariable ("id") Integer id, @ModelAttribute Board board){
+        Board boardTemp = boardService.boardView(id); //기존의 글이 담겨져 옴
+        boardTemp.setTitle(board.getTitle());
+        boardTemp.setContent(board.getContent());
+        boardService.write(boardTemp);
+        return "redirect:/board/list";
+    }
+
 }
