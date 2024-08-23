@@ -42,7 +42,6 @@ public class BoardController {
         boardService.boardDelete(id);
         return "redirect:/board/list";
     }
-<<<<<<< HEAD
 
     @GetMapping("/board/modify/{id}")
     public String boardModify(@PathVariable("id") Integer id, Model model){
@@ -59,6 +58,4 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
-=======
->>>>>>> ca61979 (게시글 삭제)
 }
