@@ -17,4 +17,8 @@ public class Board {
     private String title; //필드
 
     private String content; //필드
+
+    private String filename;
+
+    private String filepath;
 }
